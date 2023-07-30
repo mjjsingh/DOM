@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-image: url(https://th.bing.com/th/id/OIP.WLN4jT8KbLo28gn_K0JMIAHaEo?pid=ImgDet&rs=1);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+label {
+  color: orange;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box {
+  border: 2px solid black;
+  padding: 20px;
+}
+input[type=submit] {
+  background-color: brown;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #8B4513;
+}
+.title {
+  text-align: center;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="center">
+<div class="box">
+<form action="/action_page.php">
+  <div class="title"><label for="fname">BOOK A CALL:</label></div><br>
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br>
+  <label for="phone">Phone:</label><br>
+  
+  <input type="tel" id="phone" name="phone"><br><br>
+  <input type="date" id="date" name="date">
+  <input type="time" id="time" name="time"><br><br>
+  <input type="submit" value="Get a Call">
+  
+</form> 
+</div>
+</div>
+
+</body>
+</html>
+
+
