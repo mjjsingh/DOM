@@ -63,3 +63,30 @@ headerTitle.innerHTML = 'Hello World ' + headerTitle.innerHTML;
 // Add "Hello World" before "Item 1"
 const firstItem = document.querySelector('#items li:first-child');
 firstItem.innerHTML = 'Hello World ' + firstItem.innerHTML;
+
+// Add delete and edit buttons next to each item
+const items = document.querySelectorAll('#items li');
+items.forEach(function(item) {
+  // Create delete button
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+  deleteBtn.appendChild(document.createTextNode('X'));
+  item.appendChild(deleteBtn);
+
+  // Create edit button
+  const editBtn = document.createElement('button');
+  editBtn.className = 'btn btn-primary btn-sm float-right mr-2 edit';
+  editBtn.appendChild(document.createTextNode('Edit'));
+  item.appendChild(editBtn);
+});
+
+// Remove newly created li tag when delete button is clicked
+document.querySelector('#items').addEventListener('click', function(e) {
+  if (e.target.classList.contains('delete')) {
+    if (confirm('Are you sure?')) {
+      const li = e.target.parentElement;
+      li.remove();
+    }
+  }
+});
+
