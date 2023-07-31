@@ -55,3 +55,11 @@ var even= document.querySelectorAll('li:nth-child(even)');
 for(var i=0; i<even.length; i++){
 even[i].style.backgroundColor ='#ccc';
 }
+
+// Add "Hello World" before "Item Lister"
+const headerTitle = document.querySelector('#header-title');
+headerTitle.innerHTML = 'Hello World ' + headerTitle.innerHTML;
+
+// Add "Hello World" before "Item 1"
+const firstItem = document.querySelector('#items li:first-child');
+firstItem.innerHTML = 'Hello World ' + firstItem.innerHTML;
