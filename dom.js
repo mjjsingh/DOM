@@ -1,92 +1,64 @@
-//console.log("hello ");
-// console.log(document.domain)
-// console.log(document.URL)
-// console.log(document.title)
-// var items= document.getElementsByClassName('list-group-item');
-// console.log(items);
-// items[1].textContent= "hello";
-// items[1].style.frontWeight= "bold";
-// //items[1].style.backgroundColor= "yellow";
+// Get form, item input, description input, list, filter
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
+var itemInput = document.getElementById('item');
+var descriptionInput = document.getElementById('description');
 
-// for(let i=0; i<items.length; i++){
-//     items[i].style.backgroundColor = "#f4f4f4";
-// }
+// Form submit event
+form.addEventListener('submit', addItem);
 
-// var li= document.getElementsByTagName('li');
-// li[1].textContent= "hello";
-// li[2].style.frontWeight= "bold";
-// //items[1].style.backgroundColor= "yellow";
+// Add item
+function addItem(e){
+  e.preventDefault();
 
-// for(let i=0; i<li.length; i++){
-//     li[i].style.backgroundColor = "#f4f4f4";
-// }
-//Qweryslectors
-// var header= document.querySelector("#main-header");
-// header.style.borderBottom= "solid 4px #ccc";
+  // Get input value and description value
+  var newItem = itemInput.value;
+  var newDescription = descriptionInput.value;
 
-var input =document.querySelector('input');
-input.value= "Hello World"
+  // Create new li element
+  var li = document.createElement('li');
 
-var submit=document.querySelector('input[type="submit"]');
-submit.value="SEND"
+  // Add class
+  li.className = 'list-group-item';
 
-var item = document.querySelector('.list-group-item');
-item.style.color = 'red';
+  // Add text node with input value and description value
+  li.appendChild(document.createTextNode(newItem + ': ' + newDescription));
 
-var lastitem = document.querySelector('.list-group-item:last-child');
-lastitem.style.color = 'blue';
+  // Create delete button element
+  var deleteBtn = document.createElement('button');
 
-var seconditem = document.querySelector('.list-group-item:nth-child(2)');
-seconditem.style.color = 'coral';
-
-//QWERYSELECTORALL
-var titles = document.querySelectorAll('.title');
-
-console.log(titles);
-titles[0].textContent ='Hello';
-
-var odd= document.querySelectorAll('li:nth-child(odd)');
-
-for(var i=0; i<odd.length; i++){
-odd[i].style.backgroundColor ='#f4f4f4';
-}
-var even= document.querySelectorAll('li:nth-child(even)');
-
-for(var i=0; i<even.length; i++){
-even[i].style.backgroundColor ='#ccc';
-}
-
-// Add "Hello World" before "Item Lister"
-const headerTitle = document.querySelector('#header-title');
-headerTitle.innerHTML = 'Hello World ' + headerTitle.innerHTML;
-
-// Add "Hello World" before "Item 1"
-const firstItem = document.querySelector('#items li:first-child');
-firstItem.innerHTML = 'Hello World ' + firstItem.innerHTML;
-
-// Add delete and edit buttons next to each item
-const items = document.querySelectorAll('#items li');
-items.forEach(function(item) {
-  // Create delete button
-  const deleteBtn = document.createElement('button');
+  // Add classes to delete button
   deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+
+  // Append text node
   deleteBtn.appendChild(document.createTextNode('X'));
-  item.appendChild(deleteBtn);
 
-  // Create edit button
-  const editBtn = document.createElement('button');
-  editBtn.className = 'btn btn-primary btn-sm float-right mr-2 edit';
-  editBtn.appendChild(document.createTextNode('Edit'));
-  item.appendChild(editBtn);
-});
+  // Append button to li
+  li.appendChild(deleteBtn);
 
-// Remove newly created li tag when delete button is clicked
-document.querySelector('#items').addEventListener('click', function(e) {
-  if (e.target.classList.contains('delete')) {
-    if (confirm('Are you sure?')) {
-      const li = e.target.parentElement;
-      li.remove();
+  // Append li to list
+  itemList.appendChild(li);
+}
+// Filter event
+filter.addEventListener('keyup', filterItems);
+
+// Filter items
+function filterItems(e){
+  // convert text to lowercase
+  var text = e.target.value.toLowerCase();
+  
+  // Get list items
+  var items = itemList.getElementsByTagName('li');
+  
+  // Convert to an array
+  Array.from(items).forEach(function(item){
+    var itemName = item.firstChild.textContent;
+    // If search text matches item name or description, show it; otherwise hide it
+    if(itemName.toLowerCase().indexOf(text) != -1){
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
     }
-  }
-});
-
+  });
+}
