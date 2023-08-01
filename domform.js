@@ -25,6 +25,6 @@ form.addEventListener('submit', function(event) {
   // Store user object in local storage
   localStorage.setItem('user', JSON.stringify(user));
 
-//   // Change submit button text
-//   event.target.querySelector('input[type="submit"]').value = 'Submit';
+  // Change submit button text
+  event.target.querySelector('input[type="submit"]').value = 'Submit';
 });
