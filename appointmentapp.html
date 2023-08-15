@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Appointment Form</title>
+</head>
+<body>
+    <h1>Appointment Form</h1>
+    <form id="appointment-form">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="phone">Phone:</label><br>
+        <input type="tel" id="phone" name="phone"><br>
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"><br>
+        <label for="time">Time:</label><br>
+        <input type="time" id="time" name="time"><br><br>
+        <input type="submit" value="Submit">
+    </form> 
+    <div id="output"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+
+    <script>
+        document.getElementById('appointment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let phone = document.getElementById('phone').value;
+            let date = document.getElementById('date').value;
+            let time = document.getElementById('time').value;
+
+            let appointment = {
+                name: name,
+                email: email,
+                phone: phone,
+                date: date,
+                time: time
+            };
+       
+            axios.post("https://crudcrud.com/api/1c01628d0b9c424097616c11e45a7373/appointmentData",appointment)
+                .then((response)=>{
+                    showNewUserOnScreen(response.data)
+                    console.log(response)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+        });
+
+        function showNewUserOnScreen(data) {
+            let output = document.getElementById('output');
+            output.innerHTML += `<p>Name: ${data.name}</p><p>Email: ${data.email}</p><p>Phone: ${data.phone}</p><p>Date: ${data.date}</p><p>Time: ${data.time}</p><button onclick='edit("${data._id}")'>Edit</button><button onclick='remove("${data._id}")'>Delete</button>`;
+        }
+
+        function edit(id) {
+            // retrieve data from server using id
+            // populate form fields with data
+        }
+
+        function remove(id) {
+            // delete data from server using id
+            // remove data from screen
+        }
+    </script>
+</body>
+</html>
