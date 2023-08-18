@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-      
-    let user=["jyoti",28, "muzaffarpur"];
-    let[name,age=89, city]= user;
-
-    console.log(name);
-    console.log(age);
-    console.log(city);
-
+    <script> 
+    class hello{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+            document.write("GOOD MORNING"+this.name)
+        }
+         me(){
+            document.write("jyoti "+this.age)
+         }
+    }
+    
+    var b= new hello("Jyoti Jyotsna",20);
+    var c= new hello(" Jyotsna",225);
+   
+   b.me();
+//    c.me();
+  
     </script>
 </head>
-
 <body>
-
+   
 </body>
-
 </html>
