@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Expense Form</title>
+  </head>
+  <body>
+    <h1>Expense Form</h1>
+    <form id="expenseForm">
+      <label for="expenseAmount"> Expense Amount:</label>
+      <input type="number" id="expenseAmount" name="expenseAmount"><br><br>
+      <label for="description"> Description:</label>
+      <input type="text" id="description" name="description"><br><br>
+      <label for="category">Choose a Category:</label>
+      <select name="category" id="category">
+        <option >Fuel</option>
+        <option value="medicine">Medicine</option>
+        <option value="grocery">Grocery</option>
+      </select><br><br>
+      <input type="submit" value="Add Expense">
+    </form>
+
+    <h2>Expenses</h2>
+    <div id="expensesList"></div>
+
+
+<script src="expense.js"></script>
+  </body>
+
+</html>
